@@ -1,0 +1,80 @@
+
+		.available {
+			border: 1px solid green;
+			width: 48px !important; 
+			height: 48px !important;
+		}
+		
+		.selected {
+			border: 1px solid red;
+			width: 48px !important;
+			height: 48px !important;
+		}
+
+
+
+.hasClass(classname)
+.replaceClass(oldName, newName)
+.removeClass(classname)
+.addClass(classname)
+
+
+addClass('selected')
+
+$('.selected').css({'border': '', 'width': '50px', 'height': '50px'}).removeClass('selected');
+$(this).css('border','1px solid green').css({'width': '48px', 'height': '48px'});
+
+<?php
+/*
+	echo "<div style='width: 400px; height: 400px; border: 1px solid black; position: relative'>";
+		for($x=0; $x < 400; $x+=50) {
+			for($y=0; $y < 400; $y+=50) {
+				echo "<div id='test' style='height:48px; width:48px; position: absolute; top:".$x."px; left:".$y."px; border: 1px solid grey;'></div>";
+			}
+		}
+		
+		echo "<div id='figure' style='z-index:1000; height:48px; width:48px; position: absolute; top:150px; left:150px; border: 1px solid green;'></div>";
+	echo "</div>";
+	*/
+
+?>
+
+
+
+/*
+		echo "$(\"#x0y0\").addClass('white_tower');";
+		echo "$(\"#x1y0\").addClass('white_jumper');";
+		echo "$(\"#x2y0\").addClass('white_runner');";
+		echo "$(\"#x3y0\").addClass('white_king');";
+		echo "$(\"#x4y0\").addClass('white_queen');";
+		echo "$(\"#x5y0\").addClass('white_runner');";
+		echo "$(\"#x6y0\").addClass('white_jumper');";
+		echo "$(\"#x7y0\").addClass('white_tower');";
+		
+		echo "$(\"#x0y1\").addClass('white_farmer');";
+		echo "$(\"#x1y1\").addClass('white_farmer');";
+		echo "$(\"#x2y1\").addClass('white_farmer');";
+		echo "$(\"#x3y1\").addClass('white_farmer');";
+		echo "$(\"#x4y1\").addClass('white_farmer');";
+		echo "$(\"#x5y1\").addClass('white_farmer');";
+		echo "$(\"#x6y1\").addClass('white_farmer');";
+		echo "$(\"#x7y1\").addClass('white_farmer');";
+		
+		echo "$(\"#x0y7\").addClass('black_tower');";
+		echo "$(\"#x1y7\").addClass('black_jumper');";
+		echo "$(\"#x2y7\").addClass('black_runner');";
+		echo "$(\"#x3y7\").addClass('black_king');";
+		echo "$(\"#x4y7\").addClass('black_queen');";
+		echo "$(\"#x5y7\").addClass('black_runner');";
+		echo "$(\"#x6y7\").addClass('black_jumper');";
+		echo "$(\"#x7y7\").addClass('black_tower');";
+		                                                       
+		echo "$(\"#x0y6\").addClass('black_farmer');";
+		echo "$(\"#x1y6\").addClass('black_farmer');";
+		echo "$(\"#x2y6\").addClass('black_farmer');";
+		echo "$(\"#x3y6\").addClass('black_farmer');";
+		echo "$(\"#x4y6\").addClass('black_farmer');";
+		echo "$(\"#x5y6\").addClass('black_farmer');";
+		echo "$(\"#x6y6\").addClass('black_farmer');";
+		echo "$(\"#x7y6\").addClass('black_farmer');";
+		*/
