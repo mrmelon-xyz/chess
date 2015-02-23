@@ -78,7 +78,7 @@ class Board {
 				$fields[$field['id']] = $field;
 			}
 			
-			echo "<div id='board' >";
+			echo "<div id='board'>";
 			echo "<table>";
 			for($y=7; $y>=0; $y--) {
 					echo "<tr>";
@@ -96,7 +96,7 @@ class Board {
 						
 						}
 						echo "<td style='".$field_color."'>";
-						echo "<div id='".$fields['x'.$x.'y'.$y]['id']."' class='".$fields['x'.$x.'y'.$y]['current_figure']."' >".$fields['x'.$x.'y'.$y]['id']."</div>"; 
+						echo "<div id='".$fields['x'.$x.'y'.$y]['id']."' class='".$fields['x'.$x.'y'.$y]['current_figure']."' ></div>"; // ".$fields['x'.$x.'y'.$y]['id']."
 						echo "</td>";
 					}
 					

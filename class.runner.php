@@ -9,7 +9,15 @@ class Runner extends Figure {
 			$new_pos = $this->basic_move_forward_right($current_pos, $i - $current_pos['y_ref'] );
 			
 			if($this->is_on_board($new_pos)){
-				if($this->check_field_empty('x'.$new_pos['x_ref'].'y'.$new_pos['y_ref'])) {
+				$destination_pos_id = 'x'.$new_pos['x_ref'].'y'.$new_pos['y_ref'];
+				$current_pos_id = 'x'.$current_pos['x_ref'].'y'.$current_pos['y_ref'];
+				
+				$condition = $this->check_if_field_available($destination_pos_id, $current_pos_id);
+				
+				if($condition == 'attack') {
+					$moves_array[] = $new_pos;
+					break;
+				} elseif ($condition == 'null') {
 					$moves_array[] = $new_pos;
 				} else {
 					break;
@@ -34,7 +42,15 @@ class Runner extends Figure {
 			$new_pos = $this->basic_move_forward_left($current_pos, $i - $current_pos['y_ref'] );
 			
 			if($this->is_on_board($new_pos)){
-				if($this->check_field_empty('x'.$new_pos['x_ref'].'y'.$new_pos['y_ref'])) {	
+				$destination_pos_id = 'x'.$new_pos['x_ref'].'y'.$new_pos['y_ref'];
+				$current_pos_id = 'x'.$current_pos['x_ref'].'y'.$current_pos['y_ref'];
+				
+				$condition = $this->check_if_field_available($destination_pos_id, $current_pos_id);
+				
+				if($condition == 'attack') {
+					$moves_array[] = $new_pos;
+					break;
+				} elseif ($condition == 'null') {
 					$moves_array[] = $new_pos;
 				} else {
 					break;
@@ -58,7 +74,15 @@ class Runner extends Figure {
 			$new_pos = $this->basic_move_back_right($current_pos, $current_pos['y_ref'] - $i );
 			
 			if($this->is_on_board($new_pos)){
-				if($this->check_field_empty('x'.$new_pos['x_ref'].'y'.$new_pos['y_ref'])) {	
+				$destination_pos_id = 'x'.$new_pos['x_ref'].'y'.$new_pos['y_ref'];
+				$current_pos_id = 'x'.$current_pos['x_ref'].'y'.$current_pos['y_ref'];
+				
+				$condition = $this->check_if_field_available($destination_pos_id, $current_pos_id);
+				
+				if($condition == 'attack') {
+					$moves_array[] = $new_pos;
+					break;
+				} elseif ($condition == 'null') {
 					$moves_array[] = $new_pos;
 				} else {
 					break;
@@ -82,7 +106,15 @@ class Runner extends Figure {
 			$new_pos = $this->basic_move_back_left($current_pos, $current_pos['y_ref'] - $i );
 			
 			if($this->is_on_board($new_pos)){
-				if($this->check_field_empty('x'.$new_pos['x_ref'].'y'.$new_pos['y_ref'])) {	
+				$destination_pos_id = 'x'.$new_pos['x_ref'].'y'.$new_pos['y_ref'];
+				$current_pos_id = 'x'.$current_pos['x_ref'].'y'.$current_pos['y_ref'];
+				
+				$condition = $this->check_if_field_available($destination_pos_id, $current_pos_id);
+				
+				if($condition == 'attack') {
+					$moves_array[] = $new_pos;
+					break;
+				} elseif ($condition == 'null') {
 					$moves_array[] = $new_pos;
 				} else {
 					break;

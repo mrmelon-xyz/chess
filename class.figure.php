@@ -44,6 +44,59 @@ class Figure {
 		}
 	}
 	
+	
+	function check_if_field_available($destination_pos_id, $current_pos_id) {
+
+		try{ 
+			
+			$db_pdo = $this->connect_db();
+			
+			$stmt = $db_pdo->query("SELECT * FROM board_table WHERE id='".$current_pos_id."'");			
+			$current_pos = $stmt->fetchall(PDO::FETCH_ASSOC);
+			
+			$current_figure_color = substr($current_pos[0]['current_figure'], 1, 5);
+			
+			$stmt = $db_pdo->query("SELECT * FROM board_table WHERE id='".$destination_pos_id."'");			
+			$destination_pos = $stmt->fetchall(PDO::FETCH_ASSOC);
+			
+			$destination_figure_color = substr($destination_pos[0]['current_figure'], 1, 5);
+			
+				if ($destination_pos[0]['current_figure'] != null and $current_figure_color != $destination_figure_color) {
+					return 'attack';
+				} elseif ($destination_pos[0]['current_figure'] == null) {
+					return 'null';
+				} else {
+					return false;
+				}
+				
+		}
+		catch(PDOException $e){
+			
+			echo 'Połączenie nie mogło zostać utworzone: ' .$e->getMessage();
+		
+		}
+	}
+	
+	public function check_new_position ($new_pos) {
+		if($this->is_on_board($new_pos)){
+			$destination_pos_id = 'x'.$new_pos['x_ref'].'y'.$new_pos['y_ref'];
+			$current_pos_id = 'x'.$current_pos['x_ref'].'y'.$current_pos['y_ref'];
+			
+			$condition = $this->check_if_field_available($destination_pos_id, $current_pos_id);
+			
+			if($condition == 'attack') {
+				$moves_array[] = $new_pos;
+				break;
+			} elseif ($condition == 'null') {
+				$moves_array[] = $new_pos;
+			} else {
+				break;
+			}
+		}
+	}
+	
+	
+	
 	public function basic_move_forward ($temp_pos, $field_num = 1){
 
 			$new_pos['x_ref'] = $temp_pos['x_ref'];

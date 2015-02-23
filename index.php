@@ -1,14 +1,26 @@
 <html>
 <head>
 	
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<link href="jquery/jquery-ui.css" rel="stylesheet">
+	<script src="jquery/jquery.js"></script>
+	<script src="jquery/jquery-ui.js"></script>
+	
+
 	
 	<style>
+		body{
+			font: 62.5% "Trebuchet MS", sans-serif;
+		}
+		#menu { 
+			width:	450px; 
+			height: 50px;
+			margin: 0 auto;
+		}
+		
 		#board { 
-			width:450px; 
-			height:450px
+			width:	450px; 
+			height: 450px;
+			margin: 0 auto;
 		}
 		
 		#board div {
@@ -19,9 +31,13 @@
 			float:left;
 		}
 		
-		table, tr, td {
+		#board table {
 			border: 1px solid black; 
 			border-collapse: collapse;
+		}
+		
+		#board table td {
+			border: 1px solid black; 
 		}
 				
 		.white_farmer {
@@ -88,6 +104,26 @@
 	
 </head>
 <body>
+<div id='menu'>
+	<table>
+		<tr>
+			<td>
+				<form action='index.php' method='post'>
+					<input type='submit' name='reset_game' value='Reset'>
+				</form>
+			</td>
+			<td>
+				<form action='' method=''>
+					<input type='button' onclick='window.location.href=window.location.href' value='Refresh'>
+				</form>
+			</td>
+		</tr>
+	</table>
+	
+	<p id='resultarea'></p>
+
+	<br />
+</div>
 <?php
 
 include("class.board.php");
@@ -104,19 +140,26 @@ echo "<script>";
 
 		print("
 			var selFigure = null;
+			var selFigureColor = null;
 			var tarLocation = null;
 			var tmpFigureClass = null;
 			
+			var colorInPlay = 'white';
+			
 			$.fn.moveFigure = function() {
+				
 				if(selFigure == null){
-					selFigure = $(this);
-					
-					$(this).css({'border': '1px solid red', 'width': '48px', 'height': '48px'});
-					
-					tmpFigureClass = $(this).attr('class');
-					
-					get_possible_moves(selFigure.attr('id'),tmpFigureClass);
-					
+					if($(this).attr('class').indexOf(colorInPlay) > -1) {
+						selFigure = $(this);
+						
+						$(this).css({'border': '1px solid red', 'width': '48px', 'height': '48px'});
+						
+						tmpFigureClass = $(this).attr('class');
+						
+						get_possible_moves(selFigure.attr('id'),tmpFigureClass);
+					} else {
+						alert('Now is ' + colorInPlay + ' color turn.');
+					}
 				} else {
 					
 					if($(this).hasClass('available')) {
@@ -133,13 +176,20 @@ echo "<script>";
 						tarLocation = $(this).attr('id');
 						
 						update_position(selFigure.attr('id'), tarLocation);
+						
+							if(colorInPlay == 'white'){
+								colorInPlay = 'black';
+							} else {
+								colorInPlay = 'white';
+							}
 					}
-									
+					
 					selFigure = null;
 					
 					$('.available').css({'border': '', 'width': '50px', 'height': '50px'}).removeClass('available');
-					
+
 				}
+				
 			};
 			
 			
@@ -157,7 +207,7 @@ echo "<script>";
 					});
 					 
 					 
-					 $(\"#resultarea\").text(data);
+					//$(\"#resultarea\").text(data);
 				  }
 				});
 
@@ -182,16 +232,6 @@ echo "<script>";
 echo "</script>";
 	
 ?>
-<br />
-<br />
-
-
-<form action='index.php' method='post'>
-	<input type='submit' name='reset_game' value='Reset'>
-</form>
-
-<p id='resultarea'></p>
-
 </body>
 </html>
 

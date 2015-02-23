@@ -9,13 +9,17 @@ class Farmer extends Figure {
 			$new_pos = $this->basic_move_forward($current_pos, 2);
 			
 			if($this->is_on_board($new_pos)){
+				$destination_pos_id = 'x'.$new_pos['x_ref'].'y'.$new_pos['y_ref'];
+				$current_pos_id = 'x'.$current_pos['x_ref'].'y'.$current_pos['y_ref'];
 				
-				if($this->check_field_empty('x'.$new_pos['x_ref'].'y'.$new_pos['y_ref'])) {
-					return $new_pos;
-				} else {
-					return false;
-				}
-				
+					$condition = $this->check_if_field_available($destination_pos_id, $current_pos_id);
+					
+					if($condition == 'null') {
+						return $new_pos;
+					} else {
+						return false;
+					}
+
 			}
 			else {
 				return false;
@@ -27,18 +31,23 @@ class Farmer extends Figure {
 		
 		$new_pos = $this->basic_move_forward($current_pos);
 					
-		if($this->is_on_board($new_pos)){
+			if($this->is_on_board($new_pos)){
+				$destination_pos_id = 'x'.$new_pos['x_ref'].'y'.$new_pos['y_ref'];
+				$current_pos_id = 'x'.$current_pos['x_ref'].'y'.$current_pos['y_ref'];
 				
-			if($this->check_field_empty('x'.$new_pos['x_ref'].'y'.$new_pos['y_ref'])) {
-				return $new_pos;
-			} else {
+					$condition = $this->check_if_field_available($destination_pos_id, $current_pos_id);
+					
+					if($condition == 'null') {
+						return $new_pos;
+					} else {
+						return false;
+					}
+
+			}
+			else {
 				return false;
 			}
-				
-		}
-		else {
-			return false;
-		}
+
 
 	}
 	
@@ -46,18 +55,23 @@ class Farmer extends Figure {
 		
 		$new_pos = $this->basic_move_forward_left($current_pos);
 		
-		if($this->is_on_board($new_pos)){
+			if($this->is_on_board($new_pos)){
+				$destination_pos_id = 'x'.$new_pos['x_ref'].'y'.$new_pos['y_ref'];
+				$current_pos_id = 'x'.$current_pos['x_ref'].'y'.$current_pos['y_ref'];
 				
-			if($this->check_field_empty('x'.$new_pos['x_ref'].'y'.$new_pos['y_ref'])) {
-				return $new_pos;
-			} else {
+					$condition = $this->check_if_field_available($destination_pos_id, $current_pos_id);
+					
+					if($condition == 'attack') {
+						return $new_pos;
+					} else {
+						return false;
+					}
+
+			}
+			else {
 				return false;
 			}
-				
-		}
-		else {
-			return false;
-		}
+
 		
 	}
 	
@@ -65,18 +79,23 @@ class Farmer extends Figure {
 		
 		$new_pos = $this->basic_move_forward_right($current_pos);
 		
-		if($this->is_on_board($new_pos)){
+			if($this->is_on_board($new_pos)){
+				$destination_pos_id = 'x'.$new_pos['x_ref'].'y'.$new_pos['y_ref'];
+				$current_pos_id = 'x'.$current_pos['x_ref'].'y'.$current_pos['y_ref'];
 				
-			if($this->check_field_empty('x'.$new_pos['x_ref'].'y'.$new_pos['y_ref'])) {
-				return $new_pos;
-			} else {
+					$condition = $this->check_if_field_available($destination_pos_id, $current_pos_id);
+					
+					if($condition == 'attack') {
+						return $new_pos;
+					} else {
+						return false;
+					}
+
+			}
+			else {
 				return false;
 			}
-				
-		}
-		else {
-			return false;
-		}
+
 
 	}
 	
